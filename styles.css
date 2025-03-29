@@ -1,0 +1,365 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial,  sans-serif;
+    background-color: #1a1a1a;
+    color: white;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    padding: 2rem 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.typing-text {
+    color: #ffffff;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #ff3333;
+    animation: blink-caret 0.75s step-end infinite;
+}
+
+.typing-text::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    color: #ffffff;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2s steps(30, end) forwards;
+}
+
+.typing-text:nth-child(2)::before {
+    animation-delay: 2s;
+}
+
+.heart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.heart-shape {
+    position: relative;
+    width: 200px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff3366, #ff0000);
+    transform: rotate(-45deg);
+    border-radius: 20px;
+}
+
+.heart-shape:before,
+.heart-shape:after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 180px;
+    border-radius: 100px 100px 0 0;
+    background: inherit;
+}
+
+.heart-shape:before {
+    top: -90px;
+    left: 0;
+}
+
+.heart-shape:after {
+    top: 0;
+    right: -90px;
+    transform: rotate(90deg);
+}
+
+.couple-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    transform: rotate(45deg);
+    z-index: 3;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: glowText 2s ease-in-out infinite;
+}
+
+@keyframes glowText {
+    0%, 100% {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3),
+                     0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3),
+                     0 0 20px rgba(255, 255, 255, 0.7);
+    }
+}
+
+/* Floating hearts background */
+.hearts-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hearts-bg::before {
+    content: '❤';
+    position: absolute;
+    color: rgba(255, 0, 0, 0.45);
+    font-size: 24px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+    }
+}
+
+.hearts-bg::after {
+    content: '❤';
+    position: absolute;
+    left: 50%;
+    color: rgba(255, 0, 0, 0.45);
+    font-size: 24px;
+    animation: float 8s linear infinite;
+    animation-delay: -4s;
+}
+
+/* Slider styles */
+.swiper {
+    width: auto;
+    max-width: 350px;
+    margin: 1.5rem auto;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.swiper-slide img {
+    max-width: 100%;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #ffffff !important;
+}
+
+.swiper-pagination-bullet {
+    background: #ffffff !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #ff0000 !important;
+}
+
+/* Message styles */
+.message {
+    width: 90%;
+    max-width: 800px;
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    position: relative;
+    z-index: 2;
+}
+
+.message p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: glowText 2s ease-in-out infinite;
+    margin-bottom: 1rem;
+}
+
+.counter-text {
+    font-size: 1.2rem;
+    color: #ff3366;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    animation: glowText 2s ease-in-out infinite;
+}
+
+/* Media Queries para dispositivos móveis */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+        gap: 10px;
+    }
+
+    .swiper {
+        max-width: 300px;
+        width: 90%;
+    }
+
+    .swiper-slide img {
+        height: 350px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        transform: scale(0.8);
+    }
+
+    .message {
+        width: 95%;
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+
+    .message p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .heart-shape {
+        width: 160px;
+        height: 144px;
+    }
+
+    .heart-shape:before,
+    .heart-shape:after {
+        width: 160px;
+        height: 144px;
+        border-radius: 80px 80px 0 0;
+    }
+
+    .heart-shape:before {
+        top: -72px;
+    }
+
+    .heart-shape:after {
+        right: -72px;
+    }
+
+    .couple-name {
+        font-size: 2rem;
+    }
+
+    .footer-text {
+        font-size: 1.3rem;
+    }
+
+    .counter-text {
+        font-size: 1.1rem;
+    }
+}
+
+/* Media Queries para dispositivos muito pequenos */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+        gap: 8px;
+        flex-direction: column;
+    }
+
+    .swiper {
+        max-width: 280px;
+    }
+
+    .swiper-slide img {
+        height: 320px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        transform: scale(0.7);
+    }
+
+    .heart-shape {
+        width: 140px;
+        height: 126px;
+    }
+
+    .heart-shape:before,
+    .heart-shape:after {
+        width: 140px;
+        height: 126px;
+        border-radius: 70px 70px 0 0;
+    }
+
+    .heart-shape:before {
+        top: -63px;
+    }
+
+    .heart-shape:after {
+        right: -63px;
+    }
+
+    .couple-name {
+        font-size: 1.8rem;
+    }
+
+    .typing-text {
+        text-align: center;
+    }
+
+    .footer-text {
+        font-size: 1.2rem;
+    }
+
+    .counter-text {
+        font-size: 1rem;
+    }
+} 
